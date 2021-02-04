@@ -25,7 +25,8 @@ exports.getCountries = async (req, res) => {
 
   try {
     const countries = await CountryService.getCountries(countryNames);
-    res.send(countries);
+
+    res.json({ countries });
   } catch ({ error }) {
     res.status(error.status);
     res.send(error.message);

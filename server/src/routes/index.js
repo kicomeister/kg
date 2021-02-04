@@ -6,7 +6,7 @@ const UserMiddleware = require('../middlewares/User');
 
 const router = express.Router();
 
-router.get('/countries', CountryController.getCountries);
+router.post('/countries', CountryController.getCountries);
 router.get('/country/:name', CountryController.getCountry);
 router.get('/all-countries', CountryController.getAllCountries);
 
