@@ -34,9 +34,16 @@ exports.Login = (req, res) => {
 
   const token = jsonwebtoken.sign({ email }, process.env.TOKEN_SECRET);
 
-  const newUser = { ...user, token };
+  setUser({ ...user, token });
 
-  setUser(newUser);
+  const { name, points } = user;
 
-  res.json(newUser);
+  res.json({
+    token,
+    user: {
+      email,
+      name,
+      points,
+    },
+  });
 };
