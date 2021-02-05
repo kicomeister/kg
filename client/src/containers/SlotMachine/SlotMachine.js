@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { H1, H2, Button, Spinner } from '@blueprintjs/core';
+import { H1, Button, Spinner } from '@blueprintjs/core';
 import { Redirect } from 'react-router-dom';
 
 import { getSlotMachineSpin } from '../../services/api/game/game';
 import { useAuth } from '../../context';
+import styles from './SlotMachine.module.css';
 
 export default function CountryList() {
   const [reels, setReels] = useState(['x', 'x', 'x']);
@@ -26,7 +27,7 @@ export default function CountryList() {
       <p>Your available coins: {user.points}</p>
       {!loading && <Button text="Spin!" onClick={spin} />}
       {loading && <Spinner />}
-      {!loading && <H2>{reels.map((reel) => `[${reel}]`)}</H2>}
+      {!loading && <div className={styles.reels}>{reels.map((reel) => `[${reel}]`)}</div>}
     </div>
   ) : (
     <Redirect to={{ pathname: '/login' }} />
