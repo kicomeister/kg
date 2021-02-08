@@ -1,11 +1,11 @@
-const db = require('../services/db');
-const jsonwebtoken = require('jsonwebtoken');
+import jsonwebtoken from 'jsonwebtoken';
+import { getItemByKey, setItem } from '../services/db';
 
-const getUser = (email) => db.getItemByKey(email);
+const getUser = (email) => getItemByKey(email);
 
-const setUser = (user) => db.setItem(user.email, user);
+const setUser = (user) => setItem(user.email, user);
 
-exports.Registration = (req, res) => {
+export const Registration = (req, res) => {
   const { name, email, password } = req.body;
 
   const user = getUser(email);
@@ -22,7 +22,7 @@ exports.Registration = (req, res) => {
   res.send('Registration completed!');
 };
 
-exports.Login = (req, res) => {
+export const Login = (req, res) => {
   const { email, password } = req.body;
 
   const user = getUser(email);

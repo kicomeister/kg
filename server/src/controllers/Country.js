@@ -1,8 +1,12 @@
-const CountryService = require('../services/api/Country');
+import {
+  getAllCountries as getAllCountriesService,
+  getCountry as getCountryService,
+  getCountries as getCountriesService,
+} from '../services/api/Country';
 
-exports.getAllCountries = async (req, res) => {
+export const getAllCountries = async (req, res) => {
   try {
-    const countries = await CountryService.getAllCountries();
+    const countries = await getAllCountriesService();
     res.send(countries);
   } catch ({ error }) {
     res.status(error.status);
@@ -10,9 +14,9 @@ exports.getAllCountries = async (req, res) => {
   }
 };
 
-exports.getCountry = async (req, res) => {
+export const getCountry = async (req, res) => {
   try {
-    const country = await CountryService.getCountry(req.params.name);
+    const country = await getCountryService(req.params.name);
     res.send(country);
   } catch ({ error }) {
     res.status(error.status);
@@ -20,11 +24,11 @@ exports.getCountry = async (req, res) => {
   }
 };
 
-exports.getCountries = async (req, res) => {
+export const getCountries = async (req, res) => {
   const { countryNames } = req.body;
 
   try {
-    const countries = await CountryService.getCountries(countryNames);
+    const countries = await getCountriesService(countryNames);
 
     res.json({ countries });
   } catch ({ error }) {

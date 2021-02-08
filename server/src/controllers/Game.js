@@ -1,12 +1,12 @@
-const db = require('../services/db');
-const SlotMachine = require('../services/game/SlotMachine');
+import { getItemByKey, setItem } from '../services/db';
+import SlotMachine from '../services/game/SlotMachine';
 
 const SPIN_COST = 1;
 
-exports.SlotMachine = (req, res) => {
+export const SlotMachineController = (req, res) => {
   const { email } = req.user;
 
-  const user = db.getItemByKey(email);
+  const user = getItemByKey(email);
 
   user.points = user.points - SPIN_COST;
 
@@ -20,6 +20,8 @@ exports.SlotMachine = (req, res) => {
   const { point, result } = slotMachine.getSlotResult();
 
   user.points += point;
+
+  setItem(user.email, user);
 
   res.send({ result, user: { points: user.points } });
 };

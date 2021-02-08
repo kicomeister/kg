@@ -1,10 +1,10 @@
-const express = require('express');
-const session = require('express-session');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const errorHandlers = require('./handlers/errorHandlers');
-const routes = require('./routes');
-const CorsMiddleware = require('./middlewares/Cors');
+import express from 'express';
+import session from 'express-session';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import { general } from './handlers/errorHandlers';
+import routes from './routes';
+import { Cors } from './middlewares/Cors';
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
-app.use(CorsMiddleware.Cors);
+app.use(Cors);
 
 app.use(
   session({
@@ -26,6 +26,6 @@ app.use(
 
 app.use('/', routes);
 
-app.use(errorHandlers.general);
+app.use(general);
 
 module.exports = app;

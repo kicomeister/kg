@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 const request = async ({ endpoint, config }) => {
   const result = await fetch(endpoint, config);
@@ -20,4 +20,4 @@ const request = async ({ endpoint, config }) => {
   }
 };
 
-module.exports = request;
+export default request;

@@ -1,5 +1,5 @@
-const jwt = require('express-jwt');
-const { check, validationResult } = require('express-validator');
+import jwt from 'express-jwt';
+import { check, validationResult } from 'express-validator';
 
 const getRegistrationValidators = () => [
   check('email').isEmail(),
@@ -24,8 +24,9 @@ const reporter = (req, res, next) => {
   next();
 };
 
-module.exports = {
-  Auth: jwt({ secret: process.env.TOKEN_SECRET, algorithms: ['HS256'] }),
-  Registration: [getRegistrationValidators(), reporter],
-  Login: [getLoginValidators(), reporter],
-};
+export const Auth = jwt({
+  secret: process.env.TOKEN_SECRET,
+  algorithms: ['HS256'],
+});
+export const Login = [getLoginValidators(), reporter];
+export const Registration = [getRegistrationValidators(), reporter];

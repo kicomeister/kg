@@ -1,4 +1,4 @@
-const Cors = (req, res, next) => {
+export const Cors = (req, res, next) => {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', process.env.CLIENT_URL);
 
@@ -20,8 +20,4 @@ const Cors = (req, res, next) => {
 
   // Pass to next layer of middleware
   next();
-};
-
-module.exports = {
-  Cors,
 };

@@ -1,4 +1,4 @@
-const get = require('lodash.get');
+import get from 'lodash.get';
 
 const APPLE = 'apple';
 const BANANA = 'banana';
@@ -28,8 +28,7 @@ const REELS = [
   [LEMON, APPLE, LEMON, LEMON, CHERRY, APPLE, BANANA, LEMON],
   [LEMON, APPLE, LEMON, APPLE, CHERRY, LEMON, BANANA, LEMON],
 ];
-
-class SlotMachine {
+export default class SlotMachine {
   constructor(reels, points) {
     this.reels = reels || REELS;
     this.points = points || POINTS;
@@ -101,5 +100,3 @@ class SlotMachine {
       []
     );
 }
-
-module.exports = SlotMachine;

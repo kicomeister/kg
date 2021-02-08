@@ -1,8 +1,8 @@
-const express = require('express');
-const CountryController = require('../controllers/Country');
-const GameController = require('../controllers/Game');
-const UserController = require('../controllers/User');
-const UserMiddleware = require('../middlewares/User');
+import express from 'express';
+import * as CountryController from '../controllers/Country';
+import * as GameController from '../controllers/Game';
+import * as UserController from '../controllers/User';
+import * as UserMiddleware from '../middlewares/User';
 
 const router = express.Router();
 
@@ -17,6 +17,10 @@ router.put(
 );
 router.post('/login', UserMiddleware.Login, UserController.Login);
 
-router.get('/slot-machine', UserMiddleware.Auth, GameController.SlotMachine);
+router.get(
+  '/slot-machine',
+  UserMiddleware.Auth,
+  GameController.SlotMachineController
+);
 
-module.exports = router;
+export default router;
