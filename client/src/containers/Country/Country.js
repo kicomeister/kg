@@ -36,7 +36,7 @@ export default function Country() {
   return (
     <div>
       <H1>Country finder</H1>
-      <FormGroup label="Country" labelFor="text-input">
+      <FormGroup label="County/Counties" labelFor="text-input" labelInfo="(separator: ',')">
         <InputGroup id="text-input" placeholder="Hungary, Estonia, ..." onChange={(e) => setCountry(e.target.value)} />
       </FormGroup>
 
